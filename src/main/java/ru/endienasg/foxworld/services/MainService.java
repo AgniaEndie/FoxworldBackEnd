@@ -19,6 +19,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 
@@ -55,7 +56,9 @@ public class MainService {
                 MessageDigest digest = MessageDigest.getInstance("MD5");
                 digest.update(fileArray);
                 byte[] hash = digest.digest();
-                String capeHash = Base64.getEncoder().encodeToString(hash);
+                //String capeHash = Base64.getEncoder().encodeToString(hash);
+                org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+                String capeHash = org.apache.commons.codec.binary.Base64.encodeBase64URLSafeString(hash);
                 CapeModel model = new CapeModel();
                 model.setDigest(capeHash);
                 model.setUrl("https://diplom.foxworld.online/main/capes/get/" + name + ".png");
@@ -74,8 +77,9 @@ public class MainService {
                 MessageDigest digest = MessageDigest.getInstance("MD5");
                 digest.update(fileArray);
                 byte[] hash = digest.digest();
-                String skinHash = Base64.getEncoder().encodeToString(hash);
-
+                //String skinHash = Base64.getEncoder().encodeToString(hash);
+                org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+                String skinHash = org.apache.commons.codec.binary.Base64.encodeBase64URLSafeString(hash);
                 SkinModel skinModel = new SkinModel();
 
                 skinModel.setUrl("https://diplom.foxworld.online/main/skins/get/" + name + ".png");
@@ -106,8 +110,9 @@ public class MainService {
                     MessageDigest digest = MessageDigest.getInstance("MD5");
                     digest.update(defaultFileArr);
                     byte[] hash = digest.digest();
-                    String skinHash = Base64.getEncoder().encodeToString(hash);
-
+                    //String skinHash = Base64.getEncoder().encodeToString(hash);
+                    org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
+                    String skinHash = org.apache.commons.codec.binary.Base64.encodeBase64URLSafeString(hash);
                     SkinModel skinModel = new SkinModel();
                     skinModel.setUrl("https://diplom.foxworld.online/main/skins/get/default.png");
                     skinModel.setDigest(skinHash);
